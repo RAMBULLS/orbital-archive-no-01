@@ -191,3 +191,5 @@ Read [GOVERNANCE.md](GOVERNANCE.md) before generating or changing UI. Human cont
 ## License
 
 MIT. See [LICENSE](LICENSE). Third-party material (Tabler Icons, MIT) is credited in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+Built by [RAM.BULLS](https://rambulls.pages.dev/). If Orbital Archive helps your work, you can [support its continued development](https://buymeacoffee.com/ram.bulls).
