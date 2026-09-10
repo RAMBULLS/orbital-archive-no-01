@@ -59,5 +59,8 @@
     "style-dictionary": "^5.0.0",
     "stylelint": "^16.9.0",
     "stylelint-config-standard": "^36.0.1"
+  },
+  "overrides": {
+    "smol-toml": "1.8.0"
   }
 }

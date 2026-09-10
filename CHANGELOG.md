@@ -2,7 +2,10 @@
 
 ## Unreleased
 
-- Updated public site, repository, issue, installation, and package-author metadata from the retired BackslashBryant identity to RAM.BULLS.
+- Added canonical and share metadata, favicon coverage, a social preview, sitemap, crawler guidance, and a branded not-found page across the public guide and application atlas.
+- Added a restrained RAM.BULLS attribution to the guide and preview footers.
+- Updated transitive development-tool dependencies and constrained `smol-toml` to its patched release; `npm audit` now reports zero vulnerabilities.
+- Standardized public site, repository, issue, installation, and package-author metadata under RAM.BULLS.
 - Restored the published design-governance contract as `GOVERNANCE.md` and repaired validation after a generic hygiene pass removed the former filename.
 - Formatted the hygiene workflow so the repository quality gate can pass again.
 - Updated the GitHub Actions workflows to the current official major releases, including Pages artifact support for the configured hidden-file input.

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#11181e" />
+    <meta name="robots" content="noindex" />
+    <title>Page not found · Orbital Archive No. 01</title>
+    <link rel="icon" type="image/svg+xml" href="assets/marks/lsm-roundel.svg" />
+    <link rel="stylesheet" href="assets/fonts.css" />
+    <link rel="stylesheet" href="tokens/dist/tokens.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        background: var(--lsm-color-palette-orbit, #11181e);
+        color: var(--lsm-color-palette-bone, #f1efe6);
+        font-family: var(--lsm-font-family-body, system-ui, sans-serif);
+      }
+      main {
+        width: min(100% - 2rem, 52rem);
+        padding: clamp(3rem, 9vw, 7rem);
+        border: 1px solid var(--lsm-color-palette-gridline, #56656e);
+        background: var(--lsm-color-palette-graphite, #253139);
+      }
+      .eyebrow {
+        margin: 0;
+        color: var(--lsm-color-palette-teal, #5ca3a6);
+        font: 700 0.75rem/1.4 var(--lsm-font-family-mono, monospace);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 0.75rem 0 1rem;
+        font: 700 clamp(3rem, 10vw, 6rem)/0.95 var(--lsm-font-family-display, system-ui, sans-serif);
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+      }
+      p {
+        max-width: 38rem;
+        color: var(--lsm-color-palette-dust, #b3bbc2);
+        font-size: 1.05rem;
+        line-height: 1.65;
+      }
+      a {
+        color: var(--lsm-color-palette-teal, #5ca3a6);
+        text-underline-offset: 0.3em;
+      }
+      a:focus-visible {
+        outline: 3px solid var(--lsm-color-palette-orange, #ff8a33);
+        outline-offset: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">Orbital Archive / 01</p>
+      <h1>Page not found</h1>
+      <p>
+        This coordinate is no longer in the archive. Return to the
+        <a href="index.html">visual guide</a> or browse the
+        <a href="examples/index.html">application atlas</a>.
+      </p>
+    </main>
+  </body>
+</html>
