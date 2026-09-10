@@ -5,6 +5,7 @@
 - Updated public site, repository, issue, installation, and package-author metadata from the retired BackslashBryant identity to RAM.BULLS.
 - Restored the published design-governance contract as `GOVERNANCE.md` and repaired validation after a generic hygiene pass removed the former filename.
 - Formatted the hygiene workflow so the repository quality gate can pass again.
+- Updated the GitHub Actions workflows to the current official major releases, including Pages artifact support for the configured hidden-file input.
 
 ## 1.8.0 — 2026-08-10
 
