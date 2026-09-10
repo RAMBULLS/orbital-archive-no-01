@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Updated public site, repository, issue, installation, and package-author metadata from the retired BackslashBryant identity to RAM.BULLS.
+- Restored the published design-governance contract as `GOVERNANCE.md` and repaired validation after a generic hygiene pass removed the former filename.
+- Formatted the hygiene workflow so the repository quality gate can pass again.
+
 ## 1.8.0 — 2026-08-10
 
 - Rebalanced the public color contract: Ignition Orange now carries primary action and editorial signal, while Signal Teal carries active, focused, selected, linked, and informational state.
