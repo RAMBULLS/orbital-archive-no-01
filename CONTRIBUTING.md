@@ -4,7 +4,7 @@ Contributions should improve clarity, portability, accessibility, maintainabilit
 
 ## Before opening a change
 
-1. Read [`AGENTS.md`](AGENTS.md), then open [`index.html`](index.html).
+1. Read [`GOVERNANCE.md`](GOVERNANCE.md), then open [`index.html`](index.html).
 2. Review [`docs/AEROSPACE-GRAMMAR.md`](docs/AEROSPACE-GRAMMAR.md) and [`docs/LAYOUT-UX.md`](docs/LAYOUT-UX.md).
 3. Keep assets and examples stack-neutral unless a platform-specific adapter is clearly labeled.
 4. Do not add niche pictograms for concepts that are clearer as labels or established platform icons.

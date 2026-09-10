@@ -12,14 +12,14 @@
     "tailwind"
   ],
   "license": "MIT",
-  "author": "Bryant (BackslashBryant)",
-  "homepage": "https://backslashbryant.github.io/orbital-archive-no-01/",
+  "author": "RAM.BULLS",
+  "homepage": "https://rambulls.github.io/orbital-archive-no-01/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BackslashBryant/orbital-archive-no-01.git"
+    "url": "git+https://github.com/RAMBULLS/orbital-archive-no-01.git"
   },
   "bugs": {
-    "url": "https://github.com/BackslashBryant/orbital-archive-no-01/issues"
+    "url": "https://github.com/RAMBULLS/orbital-archive-no-01/issues"
   },
   "type": "module",
   "engines": {

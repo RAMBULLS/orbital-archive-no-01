@@ -29,7 +29,7 @@ In **Settings → Pages → Build and deployment**, set **Source** to **GitHub A
 The expected project URL is:
 
 ```text
-https://backslashbryant.github.io/orbital-archive-no-01/
+https://rambulls.github.io/orbital-archive-no-01/
 ```
 
 A custom domain or different account configuration may produce another URL; the deployment job exposes the actual page URL in its environment summary.

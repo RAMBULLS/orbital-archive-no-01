@@ -6,13 +6,13 @@
 
 <p align="center"><code>VERSION 1.8.0</code> · <code>161 REVIEWED ICONS</code> · <code>13 APPLICATIONS</code> · <code>49 CONTRACTS</code> · <code>9 SCHEMATIC PATTERNS</code></p>
 
-<p align="center"><strong>Live:</strong> <a href="https://backslashbryant.github.io/orbital-archive-no-01/">backslashbryant.github.io/orbital-archive-no-01</a></p>
+<p align="center"><strong>Live:</strong> <a href="https://rambulls.github.io/orbital-archive-no-01/">rambulls.github.io/orbital-archive-no-01</a></p>
 
 ## Present dramatically. Operate calmly. Scale completely.
 
 Orbital Archive No. 01 is the first theme in the **Lunar Signal Modernism** design language. It combines archival aerospace drafting, condensed editorial typography, controlled signal color, pragmatic product UX, and tactile surface texture without turning normal work into a cockpit simulation.
 
-**[Open the visual guide](https://backslashbryant.github.io/orbital-archive-no-01/)** · **[Browse the application atlas](https://backslashbryant.github.io/orbital-archive-no-01/examples/index.html)** · **[See the v1.8 preview](https://backslashbryant.github.io/orbital-archive-no-01/preview.html)** · **[Read the aerospace grammar](docs/AEROSPACE-GRAMMAR.md)**
+**[Open the visual guide](https://rambulls.github.io/orbital-archive-no-01/)** · **[Browse the application atlas](https://rambulls.github.io/orbital-archive-no-01/examples/index.html)** · **[See the v1.8 preview](https://rambulls.github.io/orbital-archive-no-01/preview.html)** · **[Read the aerospace grammar](docs/AEROSPACE-GRAMMAR.md)**
 
 No install or framework is required. The pages are self-contained and open directly in a browser. For full fidelity — and to match GitHub Pages — serve the folder over a local HTTP server (`python -m http.server`) and open `http://localhost:8000/`. If a page ever renders unstyled, it means `tokens/dist/tokens.css` did not load; serve over HTTP.
 
@@ -97,7 +97,7 @@ into another project:
 **Install from Git** (versioned, no registry required):
 
 ```bash
-npm install github:BackslashBryant/orbital-archive-no-01#v1.8.0
+npm install github:RAMBULLS/orbital-archive-no-01#v1.8.0
 ```
 
 Then import the pieces your stack needs — the package exposes stable subpaths:
@@ -186,7 +186,7 @@ The repository includes a GitHub Pages workflow for the root static package. See
 
 ## Contribution rules
 
-Read [AGENTS.md](AGENTS.md) before generating or changing UI. Human contributions follow [CONTRIBUTING.md](CONTRIBUTING.md). User-visible and contract-level changes belong in [CHANGELOG.md](CHANGELOG.md).
+Read [GOVERNANCE.md](GOVERNANCE.md) before generating or changing UI. Human contributions follow [CONTRIBUTING.md](CONTRIBUTING.md). User-visible and contract-level changes belong in [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 

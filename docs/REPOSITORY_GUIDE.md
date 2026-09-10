@@ -4,7 +4,7 @@ The distributed package is a static, stack-neutral repository. It functions as a
 
 ## Root files
 
-Keep `README.md`, `index.html`, `AGENTS.md`, `LICENSE`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `CHANGELOG.md`, `RELEASE_NOTES.md`, and `manifest.json` at the repository root. A new visitor should understand the project and open the guide without installing anything.
+Keep `README.md`, `index.html`, `GOVERNANCE.md`, `LICENSE`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `CHANGELOG.md`, `RELEASE_NOTES.md`, and `manifest.json` at the repository root. A new visitor should understand the project and open the guide without installing anything.
 
 ## Content ownership
 

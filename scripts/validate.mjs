@@ -15,7 +15,7 @@ const required = [
   "preview.html",
   "README.md",
   "RELEASE_NOTES.md",
-  "AGENTS.md",
+  "GOVERNANCE.md",
   "LICENSE",
   "manifest.json",
   "components/contracts.json",
@@ -208,7 +208,7 @@ for (const name of examples) {
 
 const activeDocs = [
   "README.md",
-  "AGENTS.md",
+  "GOVERNANCE.md",
   "CONTRIBUTING.md",
   ...readdirSync(resolve(ROOT, "docs"))
     .filter((name) => name.endsWith(".md"))
