@@ -13,6 +13,9 @@ const parse = (path) => JSON.parse(read(path));
 const required = [
   "index.html",
   "preview.html",
+  "404.html",
+  "robots.txt",
+  "sitemap.xml",
   "README.md",
   "RELEASE_NOTES.md",
   "GOVERNANCE.md",
@@ -24,6 +27,7 @@ const required = [
   "assets/icons/manifest.json",
   "assets/icons/lsm-icons.svg",
   "assets/marks/readme-banner.svg",
+  "assets/social-preview.png",
   "assets/patterns/aerospace-schematic.svg",
   "assets/patterns/flight-plan.svg",
   "assets/patterns/horizon-profile.svg",
@@ -165,6 +169,14 @@ function localTarget(file, value) {
 for (const file of allFiles.filter((path) => path.endsWith(".html"))) {
   const html = readFileSync(file, "utf8");
   if (!/<h1\b/i.test(html)) fail(`${rel(file)} lacks a primary h1`);
+  if (rel(file) !== "404.html") {
+    if (!/<meta\s+name=["']description["']/i.test(html)) fail(`${rel(file)} lacks a description`);
+    if (!/<link\s+rel=["']canonical["']/i.test(html)) fail(`${rel(file)} lacks a canonical URL`);
+    if (!/<meta\s+property=["']og:image["']/i.test(html))
+      fail(`${rel(file)} lacks an Open Graph image`);
+    if (!/<meta\s+name=["']twitter:card["']/i.test(html)) fail(`${rel(file)} lacks a Twitter card`);
+    if (!/<link\s+rel=["']icon["']/i.test(html)) fail(`${rel(file)} lacks a favicon`);
+  }
   for (const match of html.matchAll(/(?:href|src)\s*=\s*["']([^"']+)["']/gi)) {
     const value = match[1];
     const target = localTarget(file, value);
@@ -182,6 +194,21 @@ for (const file of allFiles.filter((path) => path.endsWith(".html"))) {
     }
   }
 }
+
+if (!read("robots.txt").includes("https://rambulls.github.io/orbital-archive-no-01/sitemap.xml"))
+  fail("robots.txt does not advertise the canonical sitemap");
+const sitemap = read("sitemap.xml");
+for (const path of [
+  "",
+  "preview.html",
+  "examples/",
+  ...examples.map((name) => `examples/${name}`)
+]) {
+  const url = `https://rambulls.github.io/orbital-archive-no-01/${path}`;
+  if (!sitemap.includes(`<loc>${url}</loc>`)) fail(`sitemap missing ${url}`);
+}
+if (/BackslashBryant/i.test(read("CHANGELOG.md")))
+  fail("changelog retains the retired public identity");
 
 for (const file of allFiles.filter((path) => path.endsWith(".md"))) {
   const markdown = readFileSync(file, "utf8");
