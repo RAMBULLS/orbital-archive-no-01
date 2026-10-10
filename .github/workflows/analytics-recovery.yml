@@ -1,0 +1,28 @@
+name: Analytics baseline recovery
+on:
+  push:
+    branches: [chore/rb-domain-t16-analytics]
+    paths: [.github/workflows/analytics-recovery.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Retain the actual current Pages artifact with its original digest
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir "$RUNNER_TEMP/analytics-recovery"
+          gh api repos/RAMBULLS/orbital-archive-no-01/actions/artifacts/11660115153 > "$RUNNER_TEMP/analytics-recovery/original.json"
+          jq -e '.expired == false and .workflow_run.head_sha == "d3d5488be913b4a4aad83bf4c5f4d72d558b2f2a" and .digest == "sha256:85907ef1a8344943f77c69ea17199496db32d75e037d43c11f945718226c0325"' "$RUNNER_TEMP/analytics-recovery/original.json"
+          gh api repos/RAMBULLS/orbital-archive-no-01/actions/artifacts/11660115153/zip > "$RUNNER_TEMP/analytics-recovery/current-orbital-pages.zip"
+          echo "85907ef1a8344943f77c69ea17199496db32d75e037d43c11f945718226c0325  $RUNNER_TEMP/analytics-recovery/current-orbital-pages.zip" | sha256sum --check
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: analytics-baseline-orbital-d3d5488b
+          path: ${{ runner.temp }}/analytics-recovery
+          if-no-files-found: error
+          retention-days: 3
