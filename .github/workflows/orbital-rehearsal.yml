@@ -1,0 +1,38 @@
+name: Orbital recovery rehearsal
+
+on:
+  push:
+    branches: [chore/rb-domain-t18-orbital-rehearsal]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  rehearse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Reuse exact verified candidate and rollback artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 38010525517 --repo RAMBULLS/orbital-archive-no-01 --name orbital-candidate-1721693bbb33a4aecae232ab3ed9238cc49cca4e --dir "$RUNNER_TEMP/rehearsal/candidate"
+          gh run download 38010525517 --repo RAMBULLS/orbital-archive-no-01 --name orbital-rollback-40d8141c6c20dd3c98a4ab76b32af54a55158d1b --dir "$RUNNER_TEMP/rehearsal/rollback"
+          gh run download 38010525517 --repo RAMBULLS/orbital-archive-no-01 --name orbital-migration-verification-1721693bbb33a4aecae232ab3ed9238cc49cca4e --dir "$RUNNER_TEMP/rehearsal/previous-proof"
+          python .github/rehearsal/inspect.py
+      - name: Install bounded hosted browser driver
+        run: npm install --prefix "$RUNNER_TEMP/rehearsal/driver" --ignore-scripts --no-audit --no-fund --package-lock=false playwright@1.64.0
+      - name: Rehearse candidate then known-good restoration at modeled origin
+        run: node .github/rehearsal/browser.mjs
+      - name: Retain compact rehearsal proof
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: orbital-recovery-rehearsal-${{ github.sha }}
+          path: ${{ runner.temp }}/rehearsal/proof
+          retention-days: 3
