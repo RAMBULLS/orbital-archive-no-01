@@ -1,0 +1,26 @@
+name: Orbital native production verification
+on:
+  push:
+    branches: [chore/rb-domain-t13-live-verification]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Install existing bounded hosted browser driver
+        run: npm install --prefix "$RUNNER_TEMP/rehearsal/driver" --ignore-scripts --no-audit --no-fund --package-lock=false playwright@1.64.0
+      - name: Verify real production HTTPS, bookmarks and browser journeys
+        run: node .github/rehearsal/live.mjs
+      - name: Retain compact real production evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: orbital-native-production-${{ github.sha }}
+          path: ${{ runner.temp }}/rehearsal/proof
+          retention-days: 3
