@@ -54,7 +54,11 @@ try {
     proof.contexts.push(row);
     page.on("pageerror", (e) => row.pageErrors.push(e.message));
     page.on("requestfailed", (r) =>
-      row.failures.push({ url: r.url(), failure: r.failure(), method: r.method() })
+      row.failures.push({
+        url: r.url(),
+        failure: r.failure(),
+        method: r.method()
+      })
     );
     page.on("response", async (r) => {
       if (
@@ -95,7 +99,9 @@ try {
       if (!relative || relative.endsWith("/")) relative += "index.html";
       const file = path.resolve(root, relative);
       assert(file.startsWith(root + path.sep));
-      const headers = { "content-type": mime[path.extname(file)] || "application/octet-stream" };
+      const headers = {
+        "content-type": mime[path.extname(file)] || "application/octet-stream"
+      };
       if (host === "rambulls.dev") {
         const lines = (await readFile(path.join(root, "_headers"), "utf8"))
           .split("\n")
@@ -125,7 +131,7 @@ try {
     });
     try {
       const marker = "SYNTHETIC_T16_" + process.env.GITHUB_RUN_ID;
-      const url = origin + "/?query=" + marker + "&x=1&x=2&empty=#bookmark=" + marker;
+      const url = origin + "/?query=" + marker + "&x=1&x=2&empty=#/?bookmark=" + marker;
       await page.goto(url, {
         waitUntil: "networkidle",
         timeout: 45000,
@@ -176,7 +182,7 @@ try {
       await page.locator("#rb-panel-allow").click();
       await page.keyboard.press("Escape");
       await page.evaluate(() => {
-        location.hash = "#/library?search=SYNTHETIC_SEARCH";
+        location.hash = "#/library?q=SYNTHETIC_SEARCH";
       });
       await page.waitForTimeout(800);
       assert.equal(row.sdk.length, 1);
@@ -212,7 +218,10 @@ try {
       );
       const blocked = await page.evaluate(async () => {
         try {
-          await fetch("https://cloudflareinsights.com/cdn-cgi/rum", { method: "POST", body: "{}" });
+          await fetch("https://cloudflareinsights.com/cdn-cgi/rum", {
+            method: "POST",
+            body: "{}"
+          });
           return false;
         } catch {
           return true;
@@ -242,7 +251,10 @@ try {
       row.csp = await page.evaluate(() => window.__analyticsCsp);
       assert(
         row.csp.some(
-          (x) => x.disposition === "enforce" && x.blocked.includes("cloudflareinsights.com")
+          (x) =>
+            x.disposition === "enforce" &&
+            URL.canParse(x.blocked) &&
+            new URL(x.blocked).origin === "https://cloudflareinsights.com"
         )
       );
       row.stages.push({
@@ -265,10 +277,10 @@ try {
       if (host === "rambulls.dev") {
         await page.locator('a[href="privacy/"]').click();
         await page.locator("h1").waitFor();
-        assert.equal(await page.locator("h1").innerText(), "Analytics is your choice.");
+        assert.equal((await page.locator("h1").textContent()).trim(), "Analytics is your choice.");
         await page.locator('a[href="/shady-bits/privacy/"]').click();
         await page.locator("h1").waitFor();
-        assert((await page.locator("h1").innerText()).includes("Your checks stay on your phone"));
+        assert((await page.locator("h1").textContent()).includes("Your checks stay on your phone"));
       } else if (host === "orbital.rambulls.dev") {
         await page.goto(origin + "/examples/");
         await page.locator("h1").waitFor();
@@ -289,7 +301,9 @@ try {
           "/#/compare/relationships?source=nist-800-53&target=nist-800-53a&items=nist-800-53:AC-2&intent=item-mapping&compareRun=true";
         await page.goto(bookmark);
         await page.locator(".compare-results-table tbody tr").first().waitFor({ timeout: 60000 });
-        const entrance = page.getByRole("dialog", { name: "Control Atlas introduction" });
+        const entrance = page.getByRole("dialog", {
+          name: "Control Atlas introduction"
+        });
         if (await entrance.isVisible())
           await entrance.getByRole("button", { name: "Enter the Atlas" }).click();
         const skip = page.getByRole("button", { name: "Skip", exact: true });
