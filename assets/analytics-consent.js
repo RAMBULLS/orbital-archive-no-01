@@ -135,7 +135,7 @@
     var bannerText = document.createElement("p");
     bannerText.className = "rb-analytics-text";
     bannerText.textContent =
-      "With your permission, Cloudflare measures page visits and loading speed. Declining wonÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢t affect this site.";
+      "With your permission, Cloudflare measures page visits and loading speed. Declining won\u2019t affect this site.";
 
     var noticeLink = document.createElement("a");
     noticeLink.className = "rb-analytics-link";
@@ -303,6 +303,7 @@
     if (!ui.panel) return;
     ui.panel.classList.add("rb-analytics-hidden");
     ui.toggleBtn.setAttribute("aria-expanded", "false");
+    updateUI();
     if (ui.toggleBtn) ui.toggleBtn.focus();
   }
 
@@ -334,8 +335,10 @@
 
     if (btnAllow)
       btnAllow.textContent = state.cspRestricted ? "Allow analytics and reload" : "Allow analytics";
-    ui.toggleBtn.hidden = !choice && !privacy;
-    if (!choice && !privacy) {
+    var showBanner = !choice && !privacy && ui.panel.classList.contains("rb-analytics-hidden");
+    var toggleParent = showBanner ? ui.banner : ui.banner.parentNode;
+    if (ui.toggleBtn.parentNode !== toggleParent) toggleParent.appendChild(ui.toggleBtn);
+    if (showBanner) {
       if (ui.banner) ui.banner.classList.remove("rb-analytics-hidden");
     } else {
       if (ui.banner) ui.banner.classList.add("rb-analytics-hidden");

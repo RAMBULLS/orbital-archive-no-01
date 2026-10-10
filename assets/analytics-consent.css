@@ -95,6 +95,10 @@
 .rb-analytics-toggle-btn[hidden] {
   display: none;
 }
+.rb-analytics-banner .rb-analytics-toggle-btn {
+  position: static;
+  margin-top: 8px;
+}
 .rb-analytics-status {
   margin: 12px 0;
 }

@@ -1,0 +1,32 @@
+name: Analytics candidate qualification
+on:
+  push:
+    branches: [chore/rb-domain-t16-analytics]
+permissions:
+  contents: read
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+      - name: Prepare hosted browser library
+        run: npm install --prefix "$RUNNER_TEMP/browser" --no-audit --no-fund --ignore-scripts playwright@1.64.0
+      - name: Qualify the real candidate with the official SDK and collector
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/browser/node_modules/playwright/index.mjs
+          ANALYTICS_HOST: orbital.rambulls.dev
+          PUBLIC_ROOT: .
+        run: node .github/analytics/candidate.mjs
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        if: always()
+        with:
+          name: analytics-candidate-${{ github.sha }}
+          path: ${{ runner.temp }}/analytics-candidate
+          if-no-files-found: error
+          retention-days: 3
