@@ -195,7 +195,7 @@ for (const file of allFiles.filter((path) => path.endsWith(".html"))) {
   }
 }
 
-if (!read("robots.txt").includes("https://rambulls.github.io/orbital-archive-no-01/sitemap.xml"))
+if (!read("robots.txt").includes("https://orbital.rambulls.dev/sitemap.xml"))
   fail("robots.txt does not advertise the canonical sitemap");
 const sitemap = read("sitemap.xml");
 for (const path of [
@@ -204,7 +204,7 @@ for (const path of [
   "examples/",
   ...examples.map((name) => `examples/${name}`)
 ]) {
-  const url = `https://rambulls.github.io/orbital-archive-no-01/${path}`;
+  const url = `https://orbital.rambulls.dev/${path}`;
   if (!sitemap.includes(`<loc>${url}</loc>`)) fail(`sitemap missing ${url}`);
 }
 if (/BackslashBryant/i.test(read("CHANGELOG.md")))
