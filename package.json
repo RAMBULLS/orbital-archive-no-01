@@ -54,13 +54,10 @@
     "test": "npm run validate"
   },
   "devDependencies": {
-    "markdownlint-cli2": "^0.23.2",
+    "markdownlint-cli2": "^0.24.1",
     "prettier": "^3.3.3",
     "style-dictionary": "^5.0.0",
     "stylelint": "^16.9.0",
     "stylelint-config-standard": "^36.0.1"
-  },
-  "overrides": {
-    "smol-toml": "1.8.0"
   }
 }
